@@ -9,8 +9,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
+      
     function display_chosen_option() {
-      // hole is here
+        var url = document.getElementById("mySelect").value;
+        if(url != 'none') {
+            window.location = url;
+        }
     }
   </script>
 </head>
@@ -22,8 +26,8 @@
   <div class="form-group">
     <label for="mySelect">Select Model Logic:</label>
     <select class="form-control" id="mySelect">
-      <option value='1'>Random Guess</option>
-      <option value='2'>Threshold Based Method</option>
+      <option value='RandomGuess.html'>Random Guess</option>
+      <option value='ThresholdBase.html'>Threshold Based Method</option>
     </select>   
 
     <!-- write a function to display chosen option with a pop up window. -->
