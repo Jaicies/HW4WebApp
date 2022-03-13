@@ -9,9 +9,61 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
   <script type="text/javascript">
+    
+    function is_vampire() {
+        
+    var shadow = 0;
+    var complexion = 0;
+    var garlic = 0;
+
+
+      if(document.getElementById("galic_checkbox").checked) 
+      {
+         garlic = 0;
+      }
+      else
+      {
+         garlic = 3;
+      }
+
+      if(document.getElementById("shadow_checkbox").checked) 
+      {
+          shadow = 0;
+      }
+      else
+      {
+         shadow = 4;
+      }
+
+      if(document.getElementById("complexion_id").value == 'pale'|'Pale')
+      {
+          complexion = 3;
+      }
+      else
+      {
+        complexion = 0;
+      }
+
+      var status = (garlic + shadow + complexion > 6) ? "yes":"not sure";
+        
+    window.alert(status);
+    }
+
+
     function output_user_info(){
       // use this
       document.getElementById('first_name').value;
+
+      var gender_str;
+      if (document.getElementById('male_radio').checked)
+      {
+          gender_str = "male";
+      }
+      else 
+      {
+         gender_str = "female"
+      }
+
     }
   </script>
 </head>
@@ -60,7 +112,7 @@
       <!-- without this, your rows will not be aligned -->
       <div class="form-group col-md-12">
         <div class="checkbox">
-          <label><input type="checkbox" id="galic_checkbox">Galic</label>
+          <label><input type="checkbox" id="galic_checkbox">Garlic</label>
         </div>
         <div class="checkbox">
           <label><input type="checkbox" id="shadow_checkbox">Shadow</label>
@@ -70,14 +122,14 @@
 
     <div class="form-row">
       <div class="form-group col-md-12">
-        <label for="comment">Comment:</label>
-        <textarea class="form-control" rows="5" id="comment"></textarea>
+        <label for="complexion">Complexion</label>
+        <input type="text" class="form-control" id="complexion_id" placeholder="complexion">
       </div>
     </div>
   </form>
 
   <!-- How to display all user input information as a paragraph? Finish the output_user_info function -->
-  <button class="btn btn-primary" onclick="output_user_info()">Submit</button>
+  <button class="btn btn-primary" onclick="is_vampire()">Submit</button>
   
   <p id="user_info"></p>
 </div>
