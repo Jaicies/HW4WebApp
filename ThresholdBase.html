@@ -1,6 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+     <!--  Google Chart library -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+  
+//array of json objects
+    var classmate_data = [
+      {
+        'name'      : 'John',
+        'shadow'    : 'no',
+        'galic'     : 'no',
+        'complexion': 'pale'
+      },
+      {
+        'name'      : 'Lee',
+        'shadow'    : 'yes',
+        'galic'     : 'no',
+        'complexion': 'pale'
+      },
+      {
+        'name'      : 'Emma',
+        'shadow'    : 'no',
+        'galic'     : 'yes',
+        'complexion': 'brown'
+      },
+      {
+        'name'      : 'Ava',
+        'shadow'    : 'yes',
+        'galic'     : 'yes',
+        'complexion': 'olive '
+      },
+      {
+        'name'      : 'Alex',
+        'shadow'    : 'no',
+        'galic'     : 'no',
+        'complexion': 'brown'
+      },
+    ];
+
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      classmate_data_processing(data);
+
+  
+      // Set chart options
+      var options = {'title':'How many vampires in the class?',
+                     'width':400,
+                     'height':300};
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+    // model of MVC
+    function classmate_data_processing(result_data){
+      // this function process classmate data and create data table
+      var num_human = 0;
+      var num_vampire = 0;
+      for (var i =  0; i <= classmate_data.length - 1; i++) {
+        // logic based on shadow 
+        if(classmate_data[i]['shadow'] == 'no'){
+          num_vampire ++;
+        }
+        else{
+          num_human ++;
+        }
+      }
+      // Create the data table.
+      result_data.addColumn('string', 'Element');
+      result_data.addColumn('number', 'Vampire');
+      result_data.addRows([     
+        ['Human', num_human],
+        ['Vampire', num_vampire]
+      ]);
+
+    }
+  </script>
+
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,23 +105,30 @@
     var complexion = 0;
     var garlic = 0;
 
+    var shadow_string = "";
+    var garlic_string = "";
+
 
       if(document.getElementById("galic_checkbox").checked) 
       {
          garlic = 0;
+         garlic_string = "yes";
       }
       else
       {
          garlic = 3;
+         garlic_string = "no";
       }
 
       if(document.getElementById("shadow_checkbox").checked) 
       {
           shadow = 0;
+        shadow_string = "yes";  
       }
       else
       {
          shadow = 4;
+        shadow_string = "no";
       }
 
       if(document.getElementById("complexion_id").value == 'pale'|'Pale')
@@ -47,6 +143,15 @@
       var status = (garlic + shadow + complexion > 6) ? "classmate is vampire":"not sure if classmate is vampire";
         
     window.alert(status);
+    
+    //json object to hold classmate info
+    classmate_data.push(classmate_obj = 
+        {'name'      : document.getElementById("firstName"),
+        'shadow'    : shadow_string,
+        'galic'     : garlic_string,
+        'complexion': document.getElementById("complexion_id")})
+    
+    drawChart();
     }
 
 
@@ -133,6 +238,6 @@
   
   <p id="user_info"></p>
 </div>
-
+<div id="chart_div"></div>
 </body>
 </html>
