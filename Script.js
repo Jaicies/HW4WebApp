@@ -9,27 +9,27 @@ var classmate_data = [
   },
   {
     'name': 'Lee',
-    'shadow': 'yes',
-    'galic': 'no',
-    'complexion': 'pale'
+    'shadow': 'Yes',
+    'galic': 'No',
+    'complexion': 'Pale'
   },
   {
     'name': 'Emma',
-    'shadow': 'no',
-    'galic': 'yes',
-    'complexion': 'brown'
+    'shadow': 'No',
+    'galic': 'Yes',
+    'complexion': 'Not pale'
   },
   {
     'name': 'Ava',
-    'shadow': 'yes',
-    'galic': 'yes',
-    'complexion': 'olive '
+    'shadow': 'Yes',
+    'galic': 'Yes',
+    'complexion': 'Not Pale '
   },
   {
     'name': 'Alex',
-    'shadow': 'no',
-    'galic': 'no',
-    'complexion': 'brown'
+    'shadow': 'No',
+    'galic': 'No',
+    'complexion': 'Not pale'
   },
 ];
 
@@ -67,7 +67,7 @@ function classmate_data_processing(result_data) {
   var num_vampire = 0;
   for (var i = 0; i <= classmate_data.length - 1; i++) {
     // logic based on shadow 
-    if (classmate_data[i]['shadow'] == 'no') {
+    if (classmate_data[i]['shadow'] == 'No') {
       num_vampire++;
     }
     else {
@@ -99,7 +99,7 @@ function is_vampire() {
 
   if (document.getElementById("galic_checkbox").checked) {
     garlic = 0;
-    garlic_string = "Nes";
+    garlic_string = "Yes";
   }
   else {
     garlic = 3;
